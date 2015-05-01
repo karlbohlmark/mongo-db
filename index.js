@@ -82,14 +82,6 @@ Db.prototype.saveOne = function (type, obj) {
     return this.save(type, obj.id, obj)
 }
 
-Db.prototype.create = function (type, obj, cb) {
-    var collection = this.db.collection(type);
-    return collection.insertOne(obj, function (err, result) {
-        if (err) return cb(err);
-        return cb(null, result);
-    });
-}
-
 Db.prototype.deleteById = function (type, id) {
     var collection = this.db.collection(type)
     var deleteOne = promisify(collection.deleteOne, collection)
